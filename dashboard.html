@@ -1,41 +1,134 @@
-<!DOCTYPE html><html>
-<head><title>LinkShield</title><link rel="stylesheet"
-href="style.css"></head>
-<body><!-- ANNOUNCEMENT --><div id="announcementBar"
-class="announcement">Memuat announcement...
+<!DOCTYPE html>
+<html lang="en">
 
-</div><!-- IKLAN --><div id="adsContainer"
-class="ads-container">Memuat iklan...
+<head>
 
-</div><!-- TOPBAR --><div class="topbar"><button
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>LinkShield</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+
+<body>
+
+<!-- ANNOUNCEMENT -->
+
+<div id="announcementBar"
+class="announcement-bar">
+
+Memuat Announcement...
+
+</div>
+
+<!-- IKLAN -->
+
+<div id="adsContainer"
+class="ads-container">
+
+Memuat Iklan...
+
+</div>
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+<button
+class="menu-btn"
 onclick="openMenu()">
 
 ☰
 
-</button><h2>LinkShield
+</button>
 
-</h2></div><!-- SIDEBAR --><div id="sidebar"
-class="sidebar"><h3>Menu</h3><button onclick="changeUsername()">
-Ganti Username
-</button><button onclick="changePassword()">
-Ganti Password
-</button><button onclick="logout()">
-Logout
-</button><button onclick="closeMenu()">
-Tutup
-</button></div><!-- CONTENT --><div class="container"><h1>Scanner Link
+<h2>
 
-</h1><input
+🛡️ LinkShield
+
+</h2>
+
+</header>
+
+<!-- SIDEBAR -->
+
+<div id="sidebar"
+class="sidebar">
+
+<h2>
+⚙️ Menu
+</h2>
+
+<button onclick="changeUsername()">
+👤 Ganti Username
+</button>
+
+<button onclick="changePassword()">
+🔒 Ganti Password
+</button>
+
+<button onclick="logout()">
+🚪 Logout
+</button>
+
+<button onclick="closeMenu()">
+❌ Tutup
+</button>
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="main-container">
+
+<div class="scanner-card">
+
+<h1>
+
+🔍 Link Security Scanner
+
+</h1>
+
+<p>
+
+Masukkan link yang ingin diperiksa.
+
+</p>
+
+<div class="input-box">
+
+<input
+type="text"
 id="urlInput"
-placeholder="Masukkan link">
+placeholder="https://example.com">
 
 <button
 onclick="scanLink()">
 
-Scan Link
+SCAN
 
-</button><div id="result">Belum ada scan
+</button>
 
-</div></div><script type="module"
-src="dashboard.js"></script></body>
+</div>
+
+<div id="result"
+class="result-box">
+
+Belum ada hasil scan
+
+</div>
+
+</div>
+
+</div>
+
+<script type="module"
+src="dashboard.js"></script>
+
+</body>
+
 </html>

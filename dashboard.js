@@ -239,19 +239,13 @@ onSnapshot(
    const data =
    docSnap.data();
 
-   if(
-    data.type === "text"
-   ){
+   if(data.type === "text"){
 
-    html +=
-
-    `
+    html += `
     <div class="ad-card">
 
      <h3>
-
       ${data.text || ""}
-
      </h3>
 
     </div>
@@ -264,9 +258,7 @@ onSnapshot(
     data.type === "gif"
    ){
 
-    html +=
-
-    `
+    html += `
     <div class="ad-card">
 
      <img
@@ -285,13 +277,9 @@ onSnapshot(
     `;
    }
 
-   if(
-    data.type === "video"
-   ){
+   if(data.type === "video"){
 
-    html +=
-
-    `
+    html += `
     <div class="ad-card">
 
      <video
@@ -314,14 +302,5 @@ onSnapshot(
   html;
 
  }
-
-);
-
-document.getElementById(
-"adsContainer"
-).innerHTML =
-html;
-
-}
 
 );
