@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LinkShield Admin</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+<body>
+
+<div class="topbar">
+
+<h2>
+Admin Panel
+</h2>
+
+<button onclick="logout()">
+Logout
+</button>
+
+</div>
+
+<div class="container">
+
+<h3>
+Announcement Realtime
+</h3>
+
+<input
+id="announcementInput"
+placeholder="Tulis announcement">
+
+<button
+onclick="saveAnnouncement()">
+
+Simpan Announcement
+
+</button>
+
+<hr>
+
+<h3>
+Iklan Realtime
+</h3>
+
+<input
+id="adsInput"
+placeholder="Tulis iklan">
+
+<button
+onclick="saveAds()">
+
+Simpan Iklan
+
+</button>
+
+<hr>
+
+<h3>
+Total User
+</h3>
+
+<div id="totalUsers">
+0
+</div>
+
+<hr>
+
+<h3>
+Daftar User
+</h3>
+
+<div id="userList">
+
+</div>
+
+</div>
+
+<script type="module"
+src="admin.js"></script>
+
+</body>
+</html>

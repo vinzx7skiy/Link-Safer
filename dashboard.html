@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>LinkShield</title>
+
+<link rel="stylesheet"
+href="style.css">
+
+</head>
+<body>
+
+<div id="announcementBar"
+class="announcement">
+
+Memuat announcement...
+
+</div>
+
+<div id="adsBar"
+class="ads">
+
+Memuat iklan...
+
+</div>
+
+<div class="topbar">
+
+<button
+onclick="openMenu()">
+
+☰
+
+</button>
+
+<h2>
+
+LinkShield
+
+</h2>
+
+</div>
+
+<div id="sidebar"
+class="sidebar">
+
+<h3>Menu</h3>
+
+<button onclick="changeUsername()">
+Ganti Username
+</button>
+
+<button onclick="changePassword()">
+Ganti Password
+</button>
+
+<button onclick="logout()">
+Logout
+</button>
+
+<button onclick="closeMenu()">
+Tutup
+</button>
+
+</div>
+
+<div class="container">
+
+<h1>
+
+Scanner Link
+
+</h1>
+
+<input
+id="urlInput"
+placeholder="Masukkan link">
+
+<button
+onclick="scanLink()">
+
+Scan Link
+
+</button>
+
+<div id="result">
+
+Belum ada scan
+
+</div>
+
+</div>
+
+<script type="module"
+src="dashboard.js"></script>
+
+</body>
+</html>

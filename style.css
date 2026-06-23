@@ -1,0 +1,175 @@
+body{
+
+ margin:0;
+
+ background:#111;
+
+ color:white;
+
+ font-family:Arial;
+
+}
+
+.topbar{
+
+ background:#ff0000;
+
+ padding:15px;
+
+ display:flex;
+
+ gap:20px;
+
+ align-items:center;
+
+}
+
+.topbar button{
+
+ font-size:20px;
+
+}
+
+.sidebar{
+
+ position:fixed;
+
+ top:0;
+
+ left:-300px;
+
+ width:250px;
+
+ height:100%;
+
+ background:#1a1a1a;
+
+ transition:0.3s;
+
+ padding:20px;
+
+ z-index:1000;
+
+}
+
+.sidebar button{
+
+ width:100%;
+
+ margin-top:10px;
+
+ padding:12px;
+
+ background:#ff0000;
+
+ color:white;
+
+ border:none;
+
+ border-radius:10px;
+
+}
+
+.container{
+
+ padding:20px;
+
+}
+
+input{
+
+ width:100%;
+
+ padding:12px;
+
+ margin-top:10px;
+
+ border:none;
+
+ border-radius:10px;
+
+}
+
+button{
+
+ cursor:pointer;
+
+}
+
+.safe{
+
+ background:#0f5132;
+
+ padding:15px;
+
+ border-radius:10px;
+
+ margin-top:20px;
+
+}
+
+.danger{
+
+ background:#842029;
+
+ padding:15px;
+
+ border-radius:10px;
+
+ margin-top:20px;
+
+}
+
+.login-box{
+
+ width:350px;
+
+ margin:auto;
+
+ margin-top:100px;
+
+ background:#1a1a1a;
+
+ padding:20px;
+
+ border-radius:15px;
+
+}
+
+.login-box button{
+
+ width:100%;
+
+ margin-top:15px;
+
+ padding:12px;
+
+ background:#ff0000;
+
+ color:white;
+
+ border:none;
+
+ border-radius:10px;
+
+}
+
+.announcement{
+
+ background:#ff0000;
+
+ padding:10px;
+
+ text-align:center;
+
+}
+
+.ads{
+
+ background:#222;
+
+ padding:10px;
+
+ text-align:center;
+
+}
