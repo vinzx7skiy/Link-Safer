@@ -1,78 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html>
+<head><title>LinkShield</title><link rel="stylesheet"
+href="style.css"></head>
+<body><!-- ANNOUNCEMENT --><div id="announcementBar"
+class="announcement">Memuat announcement...
 
-<title>LinkShield</title>
+</div><!-- IKLAN --><div id="adsContainer"
+class="ads-container">Memuat iklan...
 
-<link rel="stylesheet"
-href="style.css">
-
-</head>
-<body>
-
-<div id="announcementBar"
-class="announcement">
-
-Memuat announcement...
-
-</div>
-
-<div id="adsBar"
-class="ads">
-
-Memuat iklan...
-
-</div>
-
-<div class="topbar">
-
-<button
+</div><!-- TOPBAR --><div class="topbar"><button
 onclick="openMenu()">
 
 ☰
 
-</button>
+</button><h2>LinkShield
 
-<h2>
-
-LinkShield
-
-</h2>
-
-</div>
-
-<div id="sidebar"
-class="sidebar">
-
-<h3>Menu</h3>
-
-<button onclick="changeUsername()">
+</h2></div><!-- SIDEBAR --><div id="sidebar"
+class="sidebar"><h3>Menu</h3><button onclick="changeUsername()">
 Ganti Username
-</button>
-
-<button onclick="changePassword()">
+</button><button onclick="changePassword()">
 Ganti Password
-</button>
-
-<button onclick="logout()">
+</button><button onclick="logout()">
 Logout
-</button>
-
-<button onclick="closeMenu()">
+</button><button onclick="closeMenu()">
 Tutup
-</button>
+</button></div><!-- CONTENT --><div class="container"><h1>Scanner Link
 
-</div>
-
-<div class="container">
-
-<h1>
-
-Scanner Link
-
-</h1>
-
-<input
+</h1><input
 id="urlInput"
 placeholder="Masukkan link">
 
@@ -81,18 +34,8 @@ onclick="scanLink()">
 
 Scan Link
 
-</button>
+</button><div id="result">Belum ada scan
 
-<div id="result">
-
-Belum ada scan
-
-</div>
-
-</div>
-
-<script type="module"
-src="dashboard.js"></script>
-
-</body>
+</div></div><script type="module"
+src="dashboard.js"></script></body>
 </html>
