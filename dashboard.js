@@ -205,88 +205,117 @@ snap.data().text;
 
 onSnapshot(
 
-collection(
-db,
-"ads"
-),
+ collection(
+  db,
+  "ads"
+ ),
 
-snapshot=>{
+ snapshot=>{
 
-let html = "";
+  const adsContainer =
+  document.getElementById(
+   "adsContainer"
+  );
 
-snapshot.forEach(docSnap=>{
+  if(snapshot.empty){
 
-const data =
-docSnap.data();
+   adsContainer.innerHTML =
 
-if(
-data.type === "text"
-){
+   `
+   <div class="ad-card">
 
-html +=
+    Tidak ada iklan
 
-`
-<div class="ad-card">
+   </div>
+   `;
 
- <h3>
+   return;
+  }
 
-  ${data.text}
+  let html = "";
 
- </h3>
+  snapshot.forEach(docSnap=>{
 
-</div>
-`;
+   const data =
+   docSnap.data();
 
-}
+   if(
+    data.type === "text"
+   ){
 
-if(
-data.type === "image"
-||
-data.type === "gif"
-){
+    html +=
 
-html +=
+    `
+    <div class="ad-card">
 
-`
-<div class="ad-card">
+     <h3>
 
- <img
-  src="${data.url}"
-  style="
-  width:100%;
-  border-radius:12px;
-  ">
+      ${data.text || ""}
 
-</div>
-`;
+     </h3>
 
-}
+    </div>
+    `;
+   }
 
-if(
-data.type === "video"
-){
+   if(
+    data.type === "image"
+    ||
+    data.type === "gif"
+   ){
 
-html +=
+    html +=
 
-`
-<div class="ad-card">
+    `
+    <div class="ad-card">
 
- <video
-  controls
-  width="100%">
+     <img
+      src="${data.url || ""}"
+      alt="Iklan"
+      style="
+      width:100%;
+      border-radius:12px;
+      "
+      onerror="
+      this.parentElement.innerHTML=
+      '<div style=\'padding:20px\'>Gambar gagal dimuat</div>';
+      ">
 
-  <source
-   src="${data.url}"
-   type="video/mp4">
+    </div>
+    `;
+   }
 
- </video>
+   if(
+    data.type === "video"
+   ){
 
-</div>
-`;
+    html +=
 
-}
+    `
+    <div class="ad-card">
 
-});
+     <video
+      controls
+      width="100%">
+
+      <source
+       src="${data.url || ""}"
+       type="video/mp4">
+
+     </video>
+
+    </div>
+    `;
+   }
+
+  });
+
+  adsContainer.innerHTML =
+  html;
+
+ }
+
+);
 
 document.getElementById(
 "adsContainer"
