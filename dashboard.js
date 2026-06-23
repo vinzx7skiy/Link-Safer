@@ -1,22 +1,21 @@
 import {
- auth,
- db
+auth,
+db
 }
 from "./firebase.js";
 
 import {
- signOut,
- updatePassword
+signOut,
+updatePassword
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
-
- doc,
- getDoc,
- updateDoc,
- onSnapshot
-
+doc,
+getDoc,
+updateDoc,
+onSnapshot,
+collection
 }
 from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -24,16 +23,20 @@ let userData;
 
 async function loadUser(){
 
- const uid =
- auth.currentUser.uid;
+if(!auth.currentUser){
+return;
+}
 
- const snap =
- await getDoc(
- doc(db,"users",uid)
- );
+const uid =
+auth.currentUser.uid;
 
- userData =
- snap.data();
+const snap =
+await getDoc(
+doc(db,"users",uid)
+);
+
+userData =
+snap.data();
 }
 
 loadUser();
@@ -41,185 +44,255 @@ loadUser();
 window.openMenu =
 function(){
 
- document.getElementById(
- "sidebar"
- ).style.left =
- "0";
+document.getElementById(
+"sidebar"
+).style.left =
+"0";
 }
 
 window.closeMenu =
 function(){
 
- document.getElementById(
- "sidebar"
- ).style.left =
- "-300px";
+document.getElementById(
+"sidebar"
+).style.left =
+"-300px";
 }
 
 window.logout =
 async function(){
 
- await signOut(auth);
+await signOut(auth);
 
- location.href =
- "index.html";
+location.href =
+"index.html";
 }
 
 window.changeUsername =
 async function(){
 
- const username =
- prompt(
- "Username baru"
- );
+const username =
+prompt(
+"Username baru"
+);
 
- if(!username){
-  return;
- }
+if(!username){
+return;
+}
 
- await updateDoc(
+await updateDoc(
 
- doc(
- db,
- "users",
- auth.currentUser.uid
- ),
+doc(
+db,
+"users",
+auth.currentUser.uid
+),
 
- {
-  username
- }
+{
+username
+}
 
- );
+);
 
- alert(
- "Username berhasil diganti"
- );
+alert(
+"Username berhasil diganti"
+);
 }
 
 window.changePassword =
 async function(){
 
- const pass =
- prompt(
- "Password baru"
- );
+const pass =
+prompt(
+"Password baru"
+);
 
- if(!pass){
-  return;
- }
+if(!pass){
+return;
+}
 
- await updatePassword(
- auth.currentUser,
- pass
- );
+await updatePassword(
+auth.currentUser,
+pass
+);
 
- alert(
- "Password berhasil diganti"
- );
+alert(
+"Password berhasil diganti"
+);
 }
 
 window.scanLink =
 function(){
 
- const url =
- document.getElementById(
- "urlInput"
- ).value
- .toLowerCase();
+const url =
+document.getElementById(
+"urlInput"
+).value
+.toLowerCase();
 
- const result =
- document.getElementById(
- "result"
- );
+const result =
+document.getElementById(
+"result"
+);
 
- const blacklist = [
+const blacklist = [
 
- "phishing",
- "free-robux",
- "hack",
- "malware",
- "scam"
+"phishing",
+"free-robux",
+"hack",
+"malware",
+"scam"
 
- ];
+];
 
- let dangerous =
- false;
+let dangerous =
+false;
 
- blacklist.forEach(word=>{
+blacklist.forEach(word=>{
 
-  if(
-   url.includes(word)
-  ){
-   dangerous =
-   true;
-  }
+if(
+url.includes(word)
+){
 
- });
+dangerous =
+true;
+}
 
- if(dangerous){
+});
 
-  result.innerHTML =
+if(dangerous){
 
-  `
-  <div class="danger">
+result.innerHTML =
 
-  ⚠️ Link Berbahaya
+`
+
+  <div class="danger">⚠️ Link Berbahaya
 
   </div>
-  `;
+  `;}else{
 
- }else{
+result.innerHTML =
 
-  result.innerHTML =
+`
 
-  `
-  <div class="safe">
-
-  ✅ Link Aman
+  <div class="safe">✅ Link Aman
 
   </div>
   `;
  }
-};
+};onSnapshot(
 
-onSnapshot(
+doc(
+db,
+"system",
+"announcement"
+),
 
- doc(
- db,
- "system",
- "announcement"
- ),
+snap=>{
 
- snap=>{
+if(snap.exists()){
 
-  if(snap.exists()){
+document.getElementById(
+"announcementBar"
+).innerText =
 
-   document.getElementById(
-   "announcementBar"
-   ).innerText =
+snap.data().text;
+}
 
-   snap.data().text;
-  }
- }
+}
+
 );
 
 onSnapshot(
 
- doc(
- db,
- "system",
- "ads"
- ),
+collection(
+db,
+"ads"
+),
 
- snap=>{
+snapshot=>{
 
-  if(snap.exists()){
+let html = "";
 
-   document.getElementById(
-   "adsBar"
-   ).innerText =
+snapshot.forEach(docSnap=>{
 
-   snap.data().text;
-  }
- }
+const data =
+docSnap.data();
+
+if(
+data.type === "text"
+){
+
+html +=
+
+`
+<div class="ad-card">
+
+ <h3>
+
+  ${data.text}
+
+ </h3>
+
+</div>
+`;
+
+}
+
+if(
+data.type === "image"
+||
+data.type === "gif"
+){
+
+html +=
+
+`
+<div class="ad-card">
+
+ <img
+  src="${data.url}"
+  style="
+  width:100%;
+  border-radius:12px;
+  ">
+
+</div>
+`;
+
+}
+
+if(
+data.type === "video"
+){
+
+html +=
+
+`
+<div class="ad-card">
+
+ <video
+  controls
+  width="100%">
+
+  <source
+   src="${data.url}"
+   type="video/mp4">
+
+ </video>
+
+</div>
+`;
+
+}
+
+});
+
+document.getElementById(
+"adsContainer"
+).innerHTML =
+html;
+
+}
+
 );
